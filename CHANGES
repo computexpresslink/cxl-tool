@@ -1,0 +1,67 @@
+All changes made on ndctl code repo to generate cxl-tool are listed here.
+1. removing directory ndctl and daxctl.
+2. removing all ndctl and dax related tests in directory `test`, and
+only four tests are left afterwards: cxl-create-region.sh, cxl-labels.sh
+cxl-region-sysfs.sh and cxl-topology.sh.
+3. cxl-labels.sh relies on ndctl command to find nmem devices corresponding to
+cxl memdevs, since ndctl has been removed from the repo, we try to locate ndctl
+in case the ndctl package is installed in the system and continue the related
+test. Otherwise, that part of test will be skipped.
+4. removing glocal variable NDCTL and DAXCTL and ndctl related reset and
+cleanup code from test/common.
+5. removing daxctl and ndctl related test configurations in test/meson.build,
+	only the 4 cxl test related configurations are kept.
+6. removing Documentation/ndctl and Documentation/daxctl.
+7. removing daxclt and ndctl related config options in meson.build.
+8. renaming project name as `cxl-tool` and version as 1.0 in meson.build
+# with all the above changes, meson setup build can pass, but cannot compile.
+9. removing `ndctl/builtin.h` in util/help.c.
+# After the all the above changes, both meson setup and meson compile pass.
+meson test can also pass (4 cxl related tests), but there are some errors
+in meson-log.txt.
+10. removing ndctl and dax related configurations in contrib/meson.build.
+11. removing ndctl and dax related configurations in ndctl.spec.in.
+	a) dev file info in libndctl.
+	b) daxctl utility dand dev file info.
+	c) ndctl and daxctl conf.
+	d) libdaxctl.pc and libndctl.pc configurations.
+	e) NOTE: changelog info regarding daxctl and others at the end of the file
+	are not removed.
+12. in sles/meson.build, removed ndctl and daxctl related options.
+13. in rhel/meson.build, removed ndctl and daxctl related options.
+14. in contrib/ndctl, removed dax and ndctl related bash and zsh completion
+15. removed test.h.
+16. in util/main.h, removed ndctl and dax related definitions.
+17. int util/main.c, fixed run_builtin function since ndctl and dax related
+functions are removed.
+18. in util/json.h, removed all dax related items in util_json_flags.
+19. removed contri/nfit_test_depmod.conf.
+20. in config.h.meson, removed DAXCTL related definitions.
+21. in clang-format, removed daxctl and ndctl related Macros.
+22. in README.md, fixed `Unit Tests` section with CXL related configurations.
+23. in scripts/do_abidiff, removed ndctl and dax related contents.
+24. in scripts/prepare-release.sh, removed dax/ndctl related contents.
+25. in util/parse-options.c, removed ndctl related option parse in function
+parse_options_subcommand_prefix.
+26. in make-git-snapshot.sh, replaced ndctl with cxl-tool.
+27. removed NDCTL with CXL_TOOL in all files under util.
+28. replaced NDCTL_MAN_PATH as CXL_TOOL_MAN_PATH in config.h.meson and
+meson.build to fix the error introduced in change 27.
+29. renamed rhel/ndctl.spec and sles/ndctl.spec to rhel/cxl-tool.spec and
+sles/cxl-tool.spec in .gitignore.
+30. fixed CONTRIBUTING.md and removed keyword "ndctl with cxl and update the
+code repo url.
+31. renamed ndctl.spec.in to cxl-tool.spec.in and fixed the issues related in
+	a) ./rhel/meson.build.
+	b) ./sles/meson.build.
+32. replaced NDCTL_xxx with CXL_TOOL_xxx in config.h.meson.
+33. replaced ndctl with cxl-tool in config.h.meson comments and
+contrib/meson.build.
+34. renamed contrib/ndctl to contrib/cxl-tool.
+35. replaced `ndctl.spec` in rpmbuild.sh with cxl-tool.spec.
+36. replaced `ndctl` in scripts/do_abidiff with `cxl-tool`.
+37. replaced `ndctl` in scripts/prepare-release.sh with `cxl-tool`.
+38. removed util/fletcher.h
+39. add argument name `argc` and `argv` to c_fn definitions in util/main.h.
+
+# there maybe still something needed to modify in README.md

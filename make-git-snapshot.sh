@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-NAME=ndctl
+NAME=cxl-tool
 
 if [ ! -x ./git-version ]; then
 	echo "$0 : ERROR: Must run from top level of git tree"
@@ -12,7 +12,6 @@ REFDIR=$PWD
 
 UPSTREAM=$REFDIR #TODO update once we have a public upstream
 OUTDIR=$HOME/rpmbuild/SOURCES
-
 if [ ! -d $OUTDIR ]; then
 	mkdir -p $OUTDIR
 fi
@@ -26,7 +25,8 @@ trap 'rm -rf $WORKDIR' exit
 git clone $REFERENCE "$UPSTREAM" "$WORKDIR"
 
 VERSION=$(./git-version)
-DIRNAME="ndctl-${VERSION}"
-git archive --remote="$WORKDIR" --format=tar --prefix="$DIRNAME/" HEAD | gzip > $OUTDIR/"ndctl-${VERSION}.tar.gz"
+DIRNAME="cxl-tool-${VERSION}"
+git archive --remote="$WORKDIR" --format=tar --prefix="$DIRNAME/" HEAD\
+											| gzip > $OUTDIR/"cxl-tool-${VERSION}.tar.gz"
 
-echo "Written $OUTDIR/ndctl-${VERSION}.tar.gz"
+echo "Written $OUTDIR/cxl-tool-${VERSION}.tar.gz"

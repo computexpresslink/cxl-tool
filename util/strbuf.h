@@ -3,8 +3,8 @@
 
 /* originally copied from perf and git */
 
-#ifndef __NDCTL_STRBUF_H
-#define __NDCTL_STRBUF_H
+#ifndef __CXL_TOOL_STRBUF_H
+#define __CXL_TOOL_STRBUF_H
 #include <string.h>
 #include <assert.h>
 #include <sys/types.h> /* for ssize_t */
@@ -95,4 +95,4 @@ extern void strbuf_addf(struct strbuf *sb, const char *fmt, ...);
 /* XXX: if read fails, any partial read is undone */
 extern ssize_t strbuf_read(struct strbuf *, int fd, ssize_t hint);
 
-#endif /* __NDCTL_STRBUF_H */
+#endif /* __CXL_TOOL_STRBUF_H */

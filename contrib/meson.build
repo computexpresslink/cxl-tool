@@ -9,23 +9,17 @@ if bashcompletiondir == ''
 endif
 
 if bashcompletiondir != 'no'
-  install_data('ndctl', install_dir : bashcompletiondir)
+  install_data('cxl-tool', install_dir : bashcompletiondir)
 
 # TODO Switch to symlinks once 0.61.0 is more widely available
-#  install_symlink('daxctl',
-#    install_dir : bashcompletiondir,
-#    pointing_to : 'ndctl'
-#  )
 #  install_symlink('cxl',
 #    install_dir : bashcompletiondir,
-#    pointing_to : 'ndctl'
+#    pointing_to : 'cxl-tool'
 #  )
-  install_data('ndctl', rename : 'daxctl', install_dir : bashcompletiondir)
-  install_data('ndctl', rename : 'cxl', install_dir : bashcompletiondir)
+  install_data('cxl-tool', rename : 'cxl', install_dir : bashcompletiondir)
 endif
 
 modprobedatadir = get_option('modprobedatadir')
 if modprobedatadir == ''
   modprobedatadir = sysconfdir + '/modprobe.d/'
 endif
-install_data('nvdimm-security.conf', install_dir : modprobedatadir)

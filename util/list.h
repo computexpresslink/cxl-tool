@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: GPL-2.0 */
 /* Copyright (C) 2022 Intel Corporation. All rights reserved. */
-#ifndef _NDCTL_LIST_H_
-#define _NDCTL_LIST_H_
+#ifndef _CXL_TOOL_LIST_H_
+#define _CXL_TOOL_LIST_H_
 
 #include <ccan/list/list.h>
 
@@ -36,4 +36,4 @@
 		}                                                              \
 	} while (0)
 
-#endif /* _NDCTL_LIST_H_ */
+#endif /* _CXL_TOOL_LIST_H_ */

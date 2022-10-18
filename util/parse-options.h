@@ -3,8 +3,8 @@
 
 /* originally copied from perf and git */
 
-#ifndef __NDCTL_PARSE_OPTIONS_H
-#define __NDCTL_PARSE_OPTIONS_H
+#ifndef __CXL_TOOL_PARSE_OPTIONS_H
+#define __CXL_TOOL_PARSE_OPTIONS_H
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -219,4 +219,4 @@ extern int parse_opt_verbosity_cb(const struct option *, const char *, int);
 
 extern const char *parse_options_fix_filename(const char *prefix, const char *file);
 
-#endif /* __NDCTL_PARSE_OPTIONS_H */
+#endif /* __CXL_TOOL_PARSE_OPTIONS_H */

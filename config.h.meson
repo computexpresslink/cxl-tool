@@ -13,10 +13,7 @@
 /* System logging. */
 #mesondefine ENABLE_LOGGING
 
-/* ndctl test poison support */
-#mesondefine ENABLE_POISON
-
-/* ndctl test support */
+/* cxl-tool test support */
 #mesondefine ENABLE_TEST
 
 /* Define to 1 if big-endian-arch */
@@ -144,11 +141,8 @@
 #mesondefine _GNU_SOURCE
 
 /* Locations to install configuration files, key config, man pages, etc.. */
-#mesondefine NDCTL_CONF_FILE
-#mesondefine NDCTL_CONF_DIR
-#mesondefine DAXCTL_CONF_DIR
-#mesondefine NDCTL_KEYS_DIR
-#mesondefine NDCTL_MAN_PATH
-#mesondefine DAXCTL_MODPROBE_DATA
-#mesondefine DAXCTL_MODPROBE_INSTALL
+#mesondefine CXL_TOOL_CONF_FILE
+#mesondefine CXL_TOOL_CONF_DIR
+#mesondefine CXL_TOOL_KEYS_DIR
+#mesondefine CXL_TOOL_MAN_PATH
 #mesondefine PREFIX

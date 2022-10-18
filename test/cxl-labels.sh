@@ -60,10 +60,16 @@ for mem in ${mems[@]}; do
 done
 
 # find nmem devices corresponding to cxl memdevs
-readarray -t nmems < <("$NDCTL" list -b cxl_test -Di | jq -r '.[].dev')
+if [ "$NDCTL" == "" ];then
+	NDCTL=`which ndctl`
+fi
 
-for nmem in ${nmems[@]}; do
-	test_label_ops "$nmem"
-done
+if [ "$NDCTL" != "" ];then
+	readarray -t nmems < <("$NDCTL" list -b cxl_test -Di | jq -r '.[].dev')
+
+	for nmem in ${nmems[@]}; do
+		test_label_ops "$nmem"
+	done
+fi
 
 modprobe -r cxl_test

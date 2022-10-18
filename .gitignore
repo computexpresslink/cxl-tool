@@ -1,7 +1,7 @@
 build/
 release/
-rhel/ndctl.spec
-sles/ndctl.spec
+rhel/cxl-tool.spec
+sles/cxl-tool.spec
 *.swp
 tags
 cscope.*

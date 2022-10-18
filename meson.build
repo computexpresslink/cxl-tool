@@ -1,5 +1,5 @@
-project('ndctl', 'c',
-  version : '74',
+project('cxl-tool', 'c',
+  version : '1.0',
   license : [
     'GPL-2.0',
     'LGPL-2.1',
@@ -256,7 +256,7 @@ endif
 
 conf.set('_GNU_SOURCE', true)
 conf.set_quoted('PREFIX', get_option('prefix'))
-conf.set_quoted('NDCTL_MAN_PATH', get_option('mandir'))
+conf.set_quoted('CXL_TOOL_MAN_PATH', get_option('mandir'))
 
 foreach ident : ['secure_getenv', '__secure_getenv']
   conf.set10('HAVE_' + ident.to_upper(), cc.has_function(ident))
@@ -269,21 +269,6 @@ conf.set10('HAVE_JSON_U64',
   )
 )
 
-ndctlconf_dir = sysconfdir / 'ndctl.conf.d'
-ndctlconf = ndctlconf_dir / 'monitor.conf'
-conf.set_quoted('NDCTL_CONF_FILE', ndctlconf)
-conf.set_quoted('NDCTL_CONF_DIR', ndctlconf_dir)
-
-ndctlkeys_dir = sysconfdir / 'ndctl' / 'keys'
-conf.set_quoted('NDCTL_KEYS_DIR', ndctlkeys_dir)
-
-daxctlconf_dir = sysconfdir / 'daxctl.conf.d'
-daxctlconf = daxctlconf_dir / 'dax.conf'
-conf.set_quoted('DAXCTL_CONF_DIR', daxctlconf_dir)
-
-conf.set_quoted('DAXCTL_MODPROBE_DATA', datadir / 'daxctl/daxctl.conf')
-conf.set_quoted('DAXCTL_MODPROBE_INSTALL', sysconfdir / 'modprobe.d/daxctl.conf')
-
 config_h = configure_file(
   input : 'config.h.meson',
   output : 'config.h',
@@ -291,35 +276,21 @@ config_h = configure_file(
 )
 add_project_arguments('-include', 'config.h', language : 'c')
 
-LIBNDCTL_CURRENT=26
-LIBNDCTL_REVISION=1
-LIBNDCTL_AGE=20
-
-LIBDAXCTL_CURRENT=6
-LIBDAXCTL_REVISION=1
-LIBDAXCTL_AGE=5
-
 LIBCXL_CURRENT=3
 LIBCXL_REVISION=0
 LIBCXL_AGE=2
 
-root_inc = include_directories(['.', 'ndctl', ])
+root_inc = include_directories(['.', ])
 
 ccan = static_library('ccan',
   [ 'ccan/str/str.c', 'ccan/list/list.c' ],
 )
 ccan_dep = declare_dependency(link_with : ccan)
 
-subdir('daxctl/lib')
-subdir('ndctl/lib')
 subdir('cxl/lib')
 subdir('util')
-subdir('ndctl')
-subdir('daxctl')
 subdir('cxl')
 if get_option('docs').enabled()
-  subdir('Documentation/ndctl')
-  subdir('Documentation/daxctl')
   subdir('Documentation/cxl')
 endif
 subdir('test')

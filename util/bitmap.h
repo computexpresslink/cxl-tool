@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: GPL-2.0 */
 /* Copyright (C) 2015-2020 Intel Corporation. All rights reserved. */
-#ifndef _NDCTL_BITMAP_H_
-#define _NDCTL_BITMAP_H_
+#ifndef _CXL_TOOL_BITMAP_H_
+#define _CXL_TOOL_BITMAP_H_
 
 #include <linux/const.h>
 #include <util/size.h>
@@ -116,4 +116,4 @@ int bitmap_full(const unsigned long *src, unsigned int nbits);
 		(typeof(_mask))(((_reg) & (_mask)) >> __bf_shf(_mask));	\
 	})
 
-#endif /* _NDCTL_BITMAP_H_ */
+#endif /* _CXL_TOOL_BITMAP_H_ */

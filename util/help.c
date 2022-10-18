@@ -14,7 +14,6 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
-#include <ndctl/builtin.h>
 #include <util/strbuf.h>
 #include <util/parse-options.h>
 
@@ -107,7 +106,7 @@ static void setup_man_path(void)
 	 * old_path, the ':' at the end will let 'man' to try
 	 * system-wide paths after ours to find the manual page. If
 	 * there is old_path, we need ':' as delimiter. */
-	strbuf_addstr(&new_path, system_path(NDCTL_MAN_PATH));
+	strbuf_addstr(&new_path, system_path(CXL_TOOL_MAN_PATH));
 	strbuf_addch(&new_path, ':');
 	if (old_path)
 		strbuf_addstr(&new_path, old_path);

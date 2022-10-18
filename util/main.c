@@ -77,10 +77,7 @@ static int run_builtin(struct cmd_struct *p, int argc, const char **argv,
 	int status;
 	struct stat st;
 
-	if (prog == PROG_NDCTL)
-		status = p->n_fn(argc, argv, ctx);
-	else
-		status = p->d_fn(argc, argv, ctx);
+	status = p->c_fn(argc, argv, ctx);
 
 	if (status)
 		return status & 0xff;

@@ -1,18 +1,18 @@
-# Contributing to ndctl
+# Contributing to cxl-tool
 
-Thank you for taking the time to contribute to ndctl.
+Thank you for taking the time to contribute to cxl-tool.
 
 The following is a set of guidelines that we adhere to, and request that
 contributors follow.
 
-1. The libnvdimm (kernel subsystem) and ndctl developers primarily use
+1. The cxl developers primarily use
    the [nvdimm](https://subspace.kernel.org/lists.linux.dev.html)
    mailing list for everything. It is recommended to send patches to
    **```nvdimm@lists.linux.dev```**
    An archive is available on [lore](https://lore.kernel.org/nvdimm/)
 
-1. Github [issues](https://github.com/pmem/ndctl/issues) are an acceptable
-   way to report a problem, but if you just have a question,
+1. Github [issues](https://github.com/computexpresslink/cxl-tool/issues)
+are an acceptable way to report a problem, but if you just have a question,
    [email](mailto:nvdimm@lists.linux.dev) the above list.
 
 1. We follow the Linux Kernel [Coding Style Guide][cs] as applicable.
@@ -37,10 +37,10 @@ contributors follow.
    an opportunity to review them.
 
 1. **Misc Best Practices:**
-   1. Use a subject prefix of "ndctl PATCH" (or "ndctl PATCH vN" for a new
+   1. Use a subject prefix of "cxl PATCH" (or "cxl PATCH vN" for a new
       revision). This can be automated for a ```git format-patch``` command
       by setting a repo-local git config setting:
-         ```git config format.subjectprefix "ndctl PATCH"```
+         ```git config format.subjectprefix "cxl PATCH"```
 
    1. For commit messages: Describe the change and why it was needed. Use a
       concise subject line, and a blank line between the subject and the body,

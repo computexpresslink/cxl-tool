@@ -7,7 +7,7 @@
 # Notes:
 #  - Checkout to the appropriate branch beforehand
 #     master - for major release
-#     ndctl-xx.y - for fixup release
+#     cxl-tool-xx.y - for fixup release
 #    This is important for generating the shortlog
 #  - Add a temporary commit that updates the libtool versions as needed.
 #    This will later become the release commit. Use --amend to add in the
@@ -20,7 +20,7 @@
 # TODO
 #  - auto generate a release commit/tag message template
 #  - determine the most recent kernel release and add it to the above
-#  - perform documentation update for pmem.io/ndctl
+#  - perform documentation update for pmem.io/cxl-tool
 
 cleanup()
 {
@@ -45,9 +45,9 @@ check_branch()
 {
 	local cur=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
 	if [ -n "$rel_fix" ]; then
-		# fixup release, expect ndctl-xx.y branch
-		if ! grep -Eq "^ndctl.[0-9]+\.y$" <<< "$cur"; then
-			err "expected an ndctl-xx.y branch for fixup release"
+		# fixup release, expect cxl-tool-xx.y branch
+		if ! grep -Eq "^cxl-tool.[0-9]+\.y$" <<< "$cur"; then
+			err "expected an cxl-tool-xx.y branch for fixup release"
 		fi
 	else
 		# major release, expect master branch
@@ -100,7 +100,7 @@ gen_lists()
 }
 
 # Check libtool versions in Makefile.am.in
-# $1: lib name (currently libndctl, libdaxctl, or libcxl)
+# $1: lib name (currently libcxl)
 check_libtool_vers()
 {
 	local lib="$1"
@@ -166,7 +166,7 @@ check_libtool_vers()
 cleanup
 parse_args "$*"
 check_branch
-[ -e "COPYING" ] || err "Run from the top level of an ndctl tree"
+[ -e "COPYING" ] || err "Run from the top level of an cxl-tool tree"
 
 last_maj=$(last_maj)
 test -n "$last_maj" || err "Unable to determine last release"
@@ -179,8 +179,6 @@ next_fix=$(next_fix "$last_fix")
 [ -n "$rel_fix" ] && last_ref="$last_fix" || last_ref="$last_maj"
 [ -n "$rel_fix" ] && next_ref="$next_fix" || next_ref="$next_maj"
 
-check_libtool_vers "libndctl"
-check_libtool_vers "libdaxctl"
 check_libtool_vers "libcxl"
 
 # HEAD~1 because HEAD would be the release commit
@@ -192,7 +190,7 @@ scripts/do_abidiff ${last_fix}..HEAD
 # once everything passes, update the git-version
 sed -i -e "s/DEF_VER=[0-9]\+.*/DEF_VER=${next_ref#v}/" git-version
 
-echo "Ready to release ndctl-$next_ref with $c_count new commits."
+echo "Ready to release cxl-tool-$next_ref with $c_count new commits."
 echo "Add git-version to the top commit to get the updated version."
 echo "Use release/commits and release/shortlog to compose the release message"
 echo "The release commit typically contains the Makefile.am.in libtool version"

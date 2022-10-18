@@ -1,8 +1,8 @@
 /* SPDX-License-Identifier: GPL-2.0 */
 /* Copyright (C) 2015-2020 Intel Corporation. All rights reserved. */
 
-#ifndef _NDCTL_SIZE_H_
-#define _NDCTL_SIZE_H_
+#ifndef _CXL_TOOL_SIZE_H_
+#define _CXL_TOOL_SIZE_H_
 #include <stdbool.h>
 #include <stdint.h>
 #include <util/util.h>
@@ -249,4 +249,4 @@ static inline size_t __ab_c_size(size_t a, size_t b, size_t c)
 		    sizeof(*(p)->member) + __must_be_array((p)->member),\
 		    sizeof(*(p)))
 
-#endif /* _NDCTL_SIZE_H_ */
+#endif /* _CXL_TOOL_SIZE_H_ */

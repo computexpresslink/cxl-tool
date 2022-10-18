@@ -466,22 +466,6 @@ static int parse_options_subcommand_prefix(int argc, const char **argv,
 {
 	struct parse_opt_ctx_t ctx;
 
-	/* build usage string if it's not provided */
-	if (subcommands && !usagestr[0]) {
-		struct strbuf buf = STRBUF_INIT;
-
-		strbuf_addf(&buf, "ndctl %s [<options>] {", argv[0]);
-		for (int i = 0; subcommands[i]; i++) {
-			if (i)
-				strbuf_addstr(&buf, "|");
-			strbuf_addstr(&buf, subcommands[i]);
-		}
-		strbuf_addstr(&buf, "}");
-
-		usagestr[0] = strdup(buf.buf);
-		strbuf_release(&buf);
-	}
-
 	parse_options_start(&ctx, argc, argv, prefix, flags);
 	switch (parse_options_step(&ctx, options, usagestr)) {
 	case PARSE_OPT_HELP:

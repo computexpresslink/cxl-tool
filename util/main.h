@@ -8,22 +8,14 @@
 #define __MAIN_H__
 
 enum program {
-	PROG_NDCTL,
-	PROG_DAXCTL,
 	PROG_CXL,
 };
 
-struct ndctl_ctx;
-struct daxctl_ctx;
 struct cxl_ctx;
 
 struct cmd_struct {
 	const char *cmd;
-	union {
-		int (*n_fn)(int, const char **, struct ndctl_ctx *ctx);
-		int (*d_fn)(int, const char **, struct daxctl_ctx *ctx);
-		int (*c_fn)(int, const char **, struct cxl_ctx *ctx);
-	};
+	int (*c_fn)(int argc, const char **argv, struct cxl_ctx *ctx);
 };
 
 int main_handle_options(const char ***argv, int *argc, const char *usage_msg,
